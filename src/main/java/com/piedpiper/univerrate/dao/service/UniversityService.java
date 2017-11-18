@@ -4,7 +4,6 @@ import com.piedpiper.univerrate.dao.entity.UniversityEntity;
 import com.piedpiper.univerrate.dao.repository.UniversityRepository;
 import com.piedpiper.univerrate.service.CSVReader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +30,9 @@ public class UniversityService {
 
     public List<UniversityEntity> getByCity(String city, Pageable pageable) {
         return repository.findByAddressIsLike("%" + city + "%", pageable).getContent();
+    }
+
+    public UniversityEntity getById(String id) {
+        return repository.findOne(id);
     }
 }

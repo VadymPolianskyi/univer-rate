@@ -1,12 +1,18 @@
 package com.piedpiper.univerrate.dao.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "comment")
-public class CommentEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+public @Data
+class CommentEntity {
     @Id
     @GenericGenerator(strategy = "uuid2", name="uuid_generator")
     @GeneratedValue(generator = "uuid_generator")

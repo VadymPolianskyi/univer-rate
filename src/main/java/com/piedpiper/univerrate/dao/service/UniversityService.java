@@ -4,6 +4,8 @@ import com.piedpiper.univerrate.dao.entity.UniversityEntity;
 import com.piedpiper.univerrate.dao.repository.UniversityRepository;
 import com.piedpiper.univerrate.service.CSVReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -27,7 +29,7 @@ public class UniversityService {
         this.csvReader = csvReader;
     }
 
-    public List<UniversityEntity> getByCity(String city) {
-        return repository.findAllByAddressLike(city);
+    public List<UniversityEntity> getByCity(String city, Pageable pageable) {
+        return repository.findAllByAddressLike(city, pageable).getContent();
     }
 }

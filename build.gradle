@@ -3,7 +3,10 @@ buildscript {
 		springBootVersion = '1.5.8.RELEASE'
 	}
 	repositories {
+		maven { url 'https://repo.spring.io/libs-snapshot' }
+		maven { url "https://plugins.gradle.org/m2/" }
 		mavenCentral()
+		jcenter()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -28,6 +31,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 
 	runtime('com.h2database:h2')
+	compileOnly "org.projectlombok:lombok:1.16.8"
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')

@@ -23,4 +23,8 @@ public class CommentService {
     public List<CommentEntity> findByUniversity(String universityId) {
         return repository.findAllByUniversityId(universityId);
     }
+
+    public List<CommentEntity> findTheMostPopular() {
+        return repository.findFirst10();
+    }
 }

@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UniversityRepository extends JpaRepository<UniversityEntity, String> {
 
-    Page<UniversityEntity> findAllByAddressLike(String like, Pageable pageable);
+    Page<UniversityEntity> findByAddressIsLike(String like, Pageable pageable);
 }

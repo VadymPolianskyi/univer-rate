@@ -1,6 +1,7 @@
 package com.piedpiper.univerrate.dao.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -10,7 +11,8 @@ import javax.persistence.*;
 @Table(name = "university")
 @AllArgsConstructor
 @NoArgsConstructor
-public class UniversityEntity {
+public @Data
+class UniversityEntity {
 
     @Id
     @GenericGenerator(strategy = "uuid2", name="uuid_generator")

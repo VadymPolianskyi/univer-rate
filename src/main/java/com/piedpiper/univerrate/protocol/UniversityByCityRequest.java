@@ -13,7 +13,5 @@ import org.springframework.data.domain.Pageable;
 public @Data
 class UniversityByCityRequest extends Request{
     private String city;
-    private int page;
-    private int size;
     private Pageable pageable;
 }

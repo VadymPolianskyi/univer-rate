@@ -34,7 +34,7 @@ public class First10CommentsHandler implements Handler<First10CommentsRequest, F
                 .map(mapper::mapComment)
                 .collect(toList());
 
-        log.info("Returned first 10 of the most famous comments.");
+        log.info("Returned first 10 of last comments.");
         return new First10CommentsResponse(theMostPopular);
     }
 }

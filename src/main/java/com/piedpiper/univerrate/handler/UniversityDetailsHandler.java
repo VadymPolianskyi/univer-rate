@@ -43,7 +43,10 @@ public class UniversityDetailsHandler implements Handler<UniversityDetailsReques
             allRates += comment.getRate();
         }
 
-        int avgRate = (int) (allRates / comments.size());
+        double avgRate = 0;
+
+        if (comments.size() > 0)
+            avgRate = (double) (allRates / comments.size());
 
         log.info("Returned details about '{}' with rate {}", university.getName(), avgRate);
 

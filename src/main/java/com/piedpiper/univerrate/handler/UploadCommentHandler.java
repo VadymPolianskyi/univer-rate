@@ -24,7 +24,10 @@ public class UploadCommentHandler implements Handler <UploadCommentRequest, Uplo
     @Override
     public UploadCommentResponse handle(UploadCommentRequest request) {
 
+        request.getComment().setDate(System.currentTimeMillis());
+
         commentService.save(mapper.revertComment(request.getComment()));
+
         log.info("Uploaded new comment from {} to university with id {}",
                 request.getComment().getAuthorEmail(), request.getComment().getUniversityId());
         return new UploadCommentResponse();

@@ -1,0 +1,40 @@
+= Getting Started With Spring REST Docs
+
+== link:index.html[BACK]
+
+<<upload>> +
+<<best>> +
+
+[#upload]
+== Upload new Comment
+
+=== Request example
+include::{snippets}/comment-upload/http-request.adoc[]
+=== Request fields
+include::{snippets}/comment-upload/request-fields.adoc[]
+
+=== Response example
+include::{snippets}/comment-upload/http-response.adoc[]
+=== Response  fields
+include::{snippets}/comment-upload/response-fields.adoc[]
+
+'''
+[#best]
+== Get last 10 comments
+
+=== Request example
+include::{snippets}/comments-last/http-request.adoc[]
+=== Request fields
+include::{snippets}/comments-last/request-fields.adoc[]
+
+=== Response example
+include::{snippets}/comments-last/http-response.adoc[]
+=== Response  fields
+include::{snippets}/comments-last/response-fields.adoc[]
+
+
+<<upload>> +
+<<best>> +
+
+=== link:index.html[BACK]
+

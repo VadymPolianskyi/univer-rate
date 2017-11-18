@@ -1,0 +1,40 @@
+= Getting Started With Spring REST Docs
+
+== link:index.html[BACK]
+
+<<universities>> +
+<<details>> +
+
+[#universities]
+== Universities in city
+
+=== Request example
+include::{snippets}/universities/http-request.adoc[]
+=== Request fields
+include::{snippets}/universities/request-fields.adoc[]
+
+=== Response example
+include::{snippets}/universities/http-response.adoc[]
+=== Response  fields
+include::{snippets}/universities/response-fields.adoc[]
+
+'''
+[#details]
+== Details for university
+
+=== Request example
+include::{snippets}/details/http-request.adoc[]
+=== Request fields
+include::{snippets}/details/request-fields.adoc[]
+
+=== Response example
+include::{snippets}/details/http-response.adoc[]
+=== Response  fields
+include::{snippets}/details/response-fields.adoc[]
+
+
+<<universities>> +
+<<details>> +
+
+=== link:index.html[BACK]
+

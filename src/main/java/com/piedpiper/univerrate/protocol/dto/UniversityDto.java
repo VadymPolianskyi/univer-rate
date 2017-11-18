@@ -2,11 +2,13 @@ package com.piedpiper.univerrate.protocol.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class UniversityDto {
+public @Data
+class UniversityDto {
 
     private String id;
 

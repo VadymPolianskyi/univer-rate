@@ -16,6 +16,6 @@ public @Data
 class UniversityDetailsResponse extends Response{
     private UniversityDto university;
     private List<CommentDto> comments;
-    private int rate;
+    private double rate;
 
 }

@@ -10,7 +10,7 @@ public class Mapper {
 
     private ModelMapper mapper = new ModelMapper();
 
-    private UniversityDto mapUniversity(UniversityEntity entity) {
+    public UniversityDto mapUniversity(UniversityEntity entity) {
         return mapper.map(entity, UniversityDto.class);
     }
 

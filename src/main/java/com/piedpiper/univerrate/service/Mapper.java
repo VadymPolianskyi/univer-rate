@@ -20,4 +20,8 @@ public class Mapper {
         return mapper.map(dto, CommentEntity.class);
     }
 
+    public CommentDto mapComment(CommentEntity entity) {
+        return mapper.map(entity, CommentDto.class);
+    }
+
 }

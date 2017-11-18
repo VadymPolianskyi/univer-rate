@@ -6,12 +6,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public @Data
-class UploadCommentRequest extends Request {
-
-    private CommentDto comment;
-
+class First10CommentsResponse extends Response{
+    private List<CommentDto> comments;
 }

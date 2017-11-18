@@ -30,6 +30,6 @@ public class UniversityService {
     }
 
     public List<UniversityEntity> getByCity(String city, Pageable pageable) {
-        return repository.findAllByAddressLike(city, pageable).getContent();
+        return repository.findByAddressIsLike("%" + city + "%", pageable).getContent();
     }
 }

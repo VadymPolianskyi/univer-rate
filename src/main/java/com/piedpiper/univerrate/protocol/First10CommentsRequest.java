@@ -5,6 +5,5 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 public @Data
-class UploadCommentResponse extends Response{
-
+class First10CommentsRequest extends Request{
 }

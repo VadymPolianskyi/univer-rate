@@ -13,9 +13,9 @@ public interface UniversityRepository extends JpaRepository<UniversityEntity, St
 
     Page<UniversityEntity> findByAddressIsLike(String like, Pageable pageable);
 
-    Page<UniversityEntity> findAllAndOrderByRate(Pageable pageable);
+    Page<UniversityEntity> findTop10ByOrderByRate(Pageable pageable);
 
     default List<UniversityEntity> findTop10() {
-        return this.findAllAndOrderByRate(new PageRequest(0, 10)).getContent();
+        return this.findTop10ByOrderByRate(new PageRequest(0, 10)).getContent();
     }
 }

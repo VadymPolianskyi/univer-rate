@@ -28,6 +28,6 @@ public class CommentService {
     }
 
     public List<CommentEntity> findTheMostPopular() {
-        return repository.findFirst10();
+        return repository.findTop10ByOrderByDate();
     }
 }

@@ -5,6 +5,7 @@ import com.piedpiper.univerrate.dao.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -21,7 +22,9 @@ public class CommentService {
     }
 
     public List<CommentEntity> findByUniversity(String universityId) {
-        return repository.findAllByUniversityIdAfterOrderByDate(universityId);
+        List<CommentEntity> comments = repository.findAllByUniversityId(universityId);
+        comments.sort(Comparator.comparingDouble(CommentEntity::getDate));
+        return comments;
     }
 
     public List<CommentEntity> findTheMostPopular() {

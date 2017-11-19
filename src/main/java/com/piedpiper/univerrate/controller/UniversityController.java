@@ -31,7 +31,7 @@ public class UniversityController {
 
     @GetMapping("/in/{city}")
     public UniversityByCityResponse universityByCity(
-            @PathVariable String city, @PageableDefault(size = DEFAULT_PAGE_SIZE, page = 1) Pageable pageable) {
+            @PathVariable String city, @PageableDefault(size = DEFAULT_PAGE_SIZE, page = 0) Pageable pageable) {
         return universityByCityHandler.handle(new UniversityByCityRequest(city, pageable));
     }
 

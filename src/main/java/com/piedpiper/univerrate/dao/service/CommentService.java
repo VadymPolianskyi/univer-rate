@@ -30,4 +30,8 @@ public class CommentService {
     public List<CommentEntity> findTheMostPopular() {
         return repository.findTop10ByOrderByDate();
     }
+
+    public CommentEntity getById(String id) {
+        return repository.findOne(id);
+    }
 }

@@ -36,4 +36,10 @@ class CommentEntity {
 
     @Column(name = "date")
     private long date;
+
+    @Column(name = "like")
+    private int like;
+
+    @Column(name = "dislike")
+    private int dislike;
 }

@@ -1,11 +1,9 @@
 package com.piedpiper.univerrate.controller;
 
 import com.piedpiper.univerrate.handler.First10CommentsHandler;
+import com.piedpiper.univerrate.handler.LikeHandler;
 import com.piedpiper.univerrate.handler.UploadCommentHandler;
-import com.piedpiper.univerrate.protocol.First10CommentsResponse;
-import com.piedpiper.univerrate.protocol.UniversityByCityResponse;
-import com.piedpiper.univerrate.protocol.UploadCommentRequest;
-import com.piedpiper.univerrate.protocol.UploadCommentResponse;
+import com.piedpiper.univerrate.protocol.*;
 import com.piedpiper.univerrate.protocol.dto.CommentDto;
 import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -35,21 +33,23 @@ public class CommentControllerTest extends DefaultControllerTest {
     private UploadCommentHandler uploadCommentHandler;
     @MockBean
     private First10CommentsHandler first10CommentsHandler;
+    @MockBean
+    private LikeHandler likeHandler;
 
 
-    private CommentDto comment = new CommentDto("3fsu204", "author@gmail.com", "Vania", "The best university", "fwo25hw2gbs", 4, 3658252);
+    private CommentDto comment = new CommentDto("3fsu204", "author@gmail.com", "Vania", "The best university", "fwo25hw2gbs", 4, 3658252, 2,4);
 
     private List<CommentDto> comments = Arrays.asList(
             comment,
-            new CommentDto("sw989gh", "andriy@gmail.com", "Andriy", "Very bad university", "fwo25hw2gbs", 1, 2636363),
-            new CommentDto("f9esuf9s8d", "yevhene@gmail.com", "Yevhene", "Very bad university", "fwo25hw2gbs", 1, 2636363),
-            new CommentDto("sat4hn45h", "jni@gmail.com", "Jni", "Very bad university", "fojgoa09", 3, 2636363),
-            new CommentDto("dfh43h", "oauth@gmail.com", "Oauth", "Very bad university", "fwo25hw2gbs", 4, 2636363),
-            new CommentDto("r35grgrgrg", "ihar@gmail.com", "Ihar", "Very my university", "jeshg3003", 5, 2636363),
-            new CommentDto("k75rjwggf", "andriy@gmail.com", "Andriy", "Very good university", "ioowrt42", 4, 2636363),
-            new CommentDto("grgrt33g", "andriy@gmail.com", "Andriy", "Very bad university", "vbcfrt2r353", 2, 535839),
-            new CommentDto("sgfjry45yh", "andriy@gmail.com", "Andriy", "Very bad university", "aaaat4rtg", 4, 958224),
-            new CommentDto("sw989gh", "andriy@gmail.com", "Andriy", "Very bad university", "fwo25hw2gbs", 5, 2636363)
+            new CommentDto("sw989gh", "andriy@gmail.com", "Andriy", "Very bad university", "fwo25hw2gbs", 1, 2636363, 2,4),
+            new CommentDto("f9esuf9s8d", "yevhene@gmail.com", "Yevhene", "Very bad university", "fwo25hw2gbs", 1, 2636363, 2,4),
+            new CommentDto("sat4hn45h", "jni@gmail.com", "Jni", "Very bad university", "fojgoa09", 3, 2636363, 2,4),
+            new CommentDto("dfh43h", "oauth@gmail.com", "Oauth", "Very bad university", "fwo25hw2gbs", 4, 2636363, 2,4),
+            new CommentDto("r35grgrgrg", "ihar@gmail.com", "Ihar", "Very my university", "jeshg3003", 5, 2636363, 2,4),
+            new CommentDto("k75rjwggf", "andriy@gmail.com", "Andriy", "Very good university", "ioowrt42", 4, 2636363, 2,2),
+            new CommentDto("grgrt33g", "andriy@gmail.com", "Andriy", "Very bad university", "vbcfrt2r353", 2, 535839, 4,85),
+            new CommentDto("sgfjry45yh", "andriy@gmail.com", "Andriy", "Very bad university", "aaaat4rtg", 4, 958224, 2,5),
+            new CommentDto("sw989gh", "andriy@gmail.com", "Andriy", "Very bad university", "fwo25hw2gbs", 5, 2636363, 22,2)
     );
 
     @Test
@@ -108,6 +108,44 @@ public class CommentControllerTest extends DefaultControllerTest {
                                 fieldWithPath("comments[].university_id").description("University id"),
                                 fieldWithPath("comments[].rate").description("Rate for university"),
                                 fieldWithPath("comments[].date").description("Comment's date"),
+                                fieldWithPath("code").description("Http code of response"),
+                                fieldWithPath("message").description("Http message of response")
+                        )));
+    }
+
+    @Test
+    public void testLike() throws Exception {
+        LikeResponse response = new LikeResponse();
+
+        when(likeHandler.handle(any())).thenReturn(response);
+
+        String responseJson = mapper.writeValueAsString(response);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/comment/like/sw989gh")
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(responseJson))
+                .andDo(document("like",
+                        preprocessRequest(prettyPrint()), preprocessResponse(prettyPrint()),
+                        responseFields(
+                                fieldWithPath("code").description("Http code of response"),
+                                fieldWithPath("message").description("Http message of response")
+                        )));
+    }
+
+    @Test
+    public void testDislike() throws Exception {
+        LikeResponse response = new LikeResponse();
+
+        when(likeHandler.handle(any())).thenReturn(response);
+
+        String responseJson = mapper.writeValueAsString(response);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/comment/dislike/sw989gh")
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(responseJson))
+                .andDo(document("dislike",
+                        preprocessRequest(prettyPrint()), preprocessResponse(prettyPrint()),
+                        responseFields(
                                 fieldWithPath("code").description("Http code of response"),
                                 fieldWithPath("message").description("Http message of response")
                         )));

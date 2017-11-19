@@ -4,6 +4,8 @@
 
 <<upload>> +
 <<best>> +
+<<like>> +
+<<dislike>> +
 
 [#upload]
 == Upload new Comment
@@ -32,7 +34,37 @@ include::{snippets}/comments-last/http-response.adoc[]
 === Response  fields
 include::{snippets}/comments-last/response-fields.adoc[]
 
+'''
+[#like]
+== Like
 
+=== Request example
+include::{snippets}/like/http-request.adoc[]
+=== Request fields
+include::{snippets}/like/request-fields.adoc[]
+
+=== Response example
+include::{snippets}/like/http-response.adoc[]
+=== Response  fields
+include::{snippets}/like/response-fields.adoc[]
+
+'''
+[#dislike]
+== Dislike
+
+=== Request example
+include::{snippets}/dislike/http-request.adoc[]
+=== Request fields
+include::{snippets}/dislike/request-fields.adoc[]
+
+=== Response example
+include::{snippets}/dislike/http-response.adoc[]
+=== Response  fields
+include::{snippets}/dislike/response-fields.adoc[]
+
+
+<<dislike>> +
+<<like>> +
 <<upload>> +
 <<best>> +
 

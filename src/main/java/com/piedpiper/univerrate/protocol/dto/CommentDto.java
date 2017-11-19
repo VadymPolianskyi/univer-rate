@@ -26,7 +26,7 @@ class CommentDto {
 
     private long date;
 
-    private int like;
+    private int likes;
 
-    private int dislike;
+    private int dislikes;
 }

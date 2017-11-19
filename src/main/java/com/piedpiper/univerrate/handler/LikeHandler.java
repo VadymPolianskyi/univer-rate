@@ -24,9 +24,9 @@ public class LikeHandler implements Handler<LikeRequest, LikeResponse> {
 
         CommentEntity comment = commentService.getById(request.getId());
         if (request.getStrategy().equals(LIKE_STRATEGY))
-            comment.setLike(comment.getLike() + 1);
+            comment.setLikes(comment.getLikes() + 1);
         else
-            comment.setDislike(comment.getDislike() + 1);
+            comment.setDislikes(comment.getDislikes() + 1);
 
         commentService.save(comment);
 

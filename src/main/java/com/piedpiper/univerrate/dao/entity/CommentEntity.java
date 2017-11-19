@@ -37,9 +37,9 @@ class CommentEntity {
     @Column(name = "date")
     private long date;
 
-    @Column(name = "like")
-    private int like;
+    @Column(name = "likes")
+    private int likes = 0;
 
-    @Column(name = "dislike")
-    private int dislike;
+    @Column(name = "dislikes")
+    private int dislikes = 0;
 }

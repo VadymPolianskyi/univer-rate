@@ -34,7 +34,7 @@ public class CSVReader {
                 String[] university = line.split(SPLITER);
 
                 universities.add(new UniversityEntity(null, university[1], university[2],university[5],
-                        university[6], university[7],university[8],university[9]));
+                        university[6], university[7],university[8],university[9], 0));
             }
             return universities;
         } catch (IOException e) {

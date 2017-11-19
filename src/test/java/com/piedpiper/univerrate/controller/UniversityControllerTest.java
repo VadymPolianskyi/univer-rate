@@ -32,12 +32,12 @@ public class UniversityControllerTest extends DefaultControllerTest {
     @MockBean
     private UniversityDetailsHandler universityDetailsHandler;
 
-    UniversityDto university = new UniversityDto("fwo25hw2gbs", "Vinnutsia National Technical University", "VNTU", "smth", "Goverment", "The best", "Vinnytsia", "st som 23");
+    UniversityDto university = new UniversityDto("fwo25hw2gbs", "Vinnutsia National Technical University", "VNTU", "smth", "Goverment", "The best", "Vinnytsia", "st som 23", 5.0);
 
 
     private List<UniversityDto> universities = Arrays.asList(
             university,
-            new UniversityDto("oawogsj225", "Kyiv Politechnic Institute", "KPI", "smth", "Goverment", "Not bad", "Kyiv", "st som 23")
+            new UniversityDto("oawogsj225", "Kyiv Politechnic Institute", "KPI", "smth", "Goverment", "Not bad", "Kyiv", "st som 23", 3.2)
     );
 
     private List<CommentDto> comments = Arrays.asList(
@@ -69,6 +69,7 @@ public class UniversityControllerTest extends DefaultControllerTest {
                                 fieldWithPath("universities[].type").description("University type(can be college, university, institute)"),
                                 fieldWithPath("universities[].region").description("Short region of university"),
                                 fieldWithPath("universities[].address").description("Full region of university"),
+                                fieldWithPath("universities[].rate").description("Rate for university"),
                                 fieldWithPath("code").description("Http code of response"),
                                 fieldWithPath("message").description("Http message of response")
                         )));
@@ -76,7 +77,7 @@ public class UniversityControllerTest extends DefaultControllerTest {
 
     @Test
     public void testUniversityDetails() throws Exception {
-        UniversityDetailsResponse response = new UniversityDetailsResponse(university, comments, 4);
+        UniversityDetailsResponse response = new UniversityDetailsResponse(university, comments);
 
         when(universityDetailsHandler.handle(any())).thenReturn(response);
 
@@ -97,6 +98,7 @@ public class UniversityControllerTest extends DefaultControllerTest {
                                 fieldWithPath("university.type").description("University type(can be college, university, institute)"),
                                 fieldWithPath("university.region").description("Short region of university"),
                                 fieldWithPath("university.address").description("Full region of university"),
+                                fieldWithPath("university.rate").description("Avg of all rates from comments"),
                                 fieldWithPath("comments").description("List of comments to this university"),
                                 fieldWithPath("comments[].id").description("Comment's id"),
                                 fieldWithPath("comments[].author_email").description("Email of author from google"),
@@ -105,7 +107,6 @@ public class UniversityControllerTest extends DefaultControllerTest {
                                 fieldWithPath("comments[].university_id").description("University id"),
                                 fieldWithPath("comments[].rate").description("Rate for university"),
                                 fieldWithPath("comments[].date").description("Comment's date"),
-                                fieldWithPath("rate").description("Avg of all rates from comments"),
                                 fieldWithPath("code").description("Http code of response"),
                                 fieldWithPath("message").description("Http message of response")
                         )));

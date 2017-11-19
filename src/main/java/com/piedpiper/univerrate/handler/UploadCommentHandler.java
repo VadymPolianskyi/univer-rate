@@ -35,6 +35,7 @@ public class UploadCommentHandler implements Handler <UploadCommentRequest, Uplo
 
         CommentDto comment = request.getComment();
         comment.setDate(System.currentTimeMillis());
+        comment.setAuthorName(comment.getAuthorName().split(" ")[0]);
 
         UniversityEntity university = universityService.getById(comment.getUniversityId());
 

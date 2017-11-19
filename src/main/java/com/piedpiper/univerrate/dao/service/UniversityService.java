@@ -38,7 +38,7 @@ public class UniversityService {
 
 
     public List<UniversityEntity> getTop10() {
-        return repository.findTop10();
+        return repository.findTop10ByOrderByRate();
     }
 
     public UniversityEntity save(UniversityEntity entity) {

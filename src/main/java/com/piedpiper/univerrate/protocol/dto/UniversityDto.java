@@ -27,4 +27,6 @@ class UniversityDto {
     private String region;
 
     private String address;
+
+    private double rate;
 }

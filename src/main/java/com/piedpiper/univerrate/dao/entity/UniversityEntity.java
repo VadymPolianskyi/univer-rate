@@ -40,4 +40,7 @@ class UniversityEntity {
 
     @Column(name = "address")
     private String address;
+
+    @Column(name = "rate")
+    private double rate;
 }

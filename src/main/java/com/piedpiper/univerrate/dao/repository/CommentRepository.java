@@ -9,4 +9,5 @@ public interface CommentRepository extends JpaRepository<CommentEntity, String> 
 
     List<CommentEntity> findAllByUniversityId(String universityId);
     List<CommentEntity> findTop10ByOrderByDate();
+    CommentEntity findByAuthorEmail(String email);
 }

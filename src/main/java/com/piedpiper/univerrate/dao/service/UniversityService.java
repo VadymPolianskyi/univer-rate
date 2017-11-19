@@ -35,4 +35,13 @@ public class UniversityService {
     public UniversityEntity getById(String id) {
         return repository.findOne(id);
     }
+
+
+    public List<UniversityEntity> getTop10() {
+        return repository.findTop10();
+    }
+
+    public UniversityEntity save(UniversityEntity entity) {
+        return repository.save(entity);
+    }
 }

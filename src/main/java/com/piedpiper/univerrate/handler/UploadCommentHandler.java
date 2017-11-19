@@ -1,10 +1,12 @@
 package com.piedpiper.univerrate.handler;
 
+import com.piedpiper.univerrate.dao.entity.CommentEntity;
 import com.piedpiper.univerrate.dao.entity.UniversityEntity;
 import com.piedpiper.univerrate.dao.service.CommentService;
 import com.piedpiper.univerrate.dao.service.UniversityService;
 import com.piedpiper.univerrate.protocol.UploadCommentRequest;
 import com.piedpiper.univerrate.protocol.UploadCommentResponse;
+import com.piedpiper.univerrate.protocol.dto.CommentDto;
 import com.piedpiper.univerrate.service.Mapper;
 import com.piedpiper.univerrate.service.RateService;
 import lombok.extern.slf4j.Slf4j;
@@ -31,12 +33,20 @@ public class UploadCommentHandler implements Handler <UploadCommentRequest, Uplo
     @Override
     public UploadCommentResponse handle(UploadCommentRequest request) {
 
-        request.getComment().setDate(System.currentTimeMillis());
+        CommentDto comment = request.getComment();
+        comment.setDate(System.currentTimeMillis());
 
-        commentService.save(mapper.revertComment(request.getComment()));
+        UniversityEntity university = universityService.getById(comment.getUniversityId());
 
-        //change universe rating
-        UniversityEntity university = universityService.getById(request.getComment().getUniversityId());
+        CommentEntity byEmail = commentService.getByEmail(comment.getAuthorEmail());
+        if (byEmail != null) {
+            byEmail.setContent(comment.getContent());
+            byEmail.setDate(System.currentTimeMillis());
+            commentService.save(byEmail);
+        } else {
+            commentService.save(mapper.revertComment(request.getComment()));
+        }
+
         university.setRate(rateService.getRate(university));
         universityService.save(university);
 

@@ -34,4 +34,8 @@ public class CommentService {
     public CommentEntity getById(String id) {
         return repository.findOne(id);
     }
+
+    public CommentEntity getByEmail(String email) {
+        return repository.findByAuthorEmail(email);
+    }
 }

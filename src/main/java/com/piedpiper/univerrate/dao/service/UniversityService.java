@@ -29,7 +29,7 @@ public class UniversityService {
     }
 
     public List<UniversityEntity> getByCity(String city, Pageable pageable) {
-        return repository.findByAddressIsLike("%" + city + "%", pageable).getContent();
+        return repository.findByAddressIsLike("%" + city.toUpperCase() + ",%", pageable).getContent();
     }
 
     public UniversityEntity getById(String id) {

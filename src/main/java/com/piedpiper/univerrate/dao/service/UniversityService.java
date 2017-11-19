@@ -18,8 +18,10 @@ public class UniversityService {
 
     @PostConstruct
     public void init() {
-        List<UniversityEntity> universities = csvReader.parseUniversities();
-        repository.save(universities);
+        if (!(repository.findAll().size() > 0)) {
+            List<UniversityEntity> universities = csvReader.parseUniversities();
+            repository.save(universities);
+        }
     }
 
     @Autowired
@@ -38,7 +40,7 @@ public class UniversityService {
 
 
     public List<UniversityEntity> getTop10() {
-        return repository.findTop10ByOrderByRate();
+        return repository.findTop10();
     }
 
     public UniversityEntity save(UniversityEntity entity) {

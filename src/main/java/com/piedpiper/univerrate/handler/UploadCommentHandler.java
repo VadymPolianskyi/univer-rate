@@ -36,7 +36,7 @@ public class UploadCommentHandler implements Handler <UploadCommentRequest, Uplo
         commentService.save(mapper.revertComment(request.getComment()));
 
         //change universe rating
-        UniversityEntity university = universityService.getById(request.getComment().getId());
+        UniversityEntity university = universityService.getById(request.getComment().getUniversityId());
         university.setRate(rateService.getRate(university));
         universityService.save(university);
 

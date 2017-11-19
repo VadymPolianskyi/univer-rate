@@ -1,11 +1,9 @@
 package com.piedpiper.univerrate.controller;
 
+import com.piedpiper.univerrate.handler.Top10UniversityHandler;
 import com.piedpiper.univerrate.handler.UniversityByCityHandler;
 import com.piedpiper.univerrate.handler.UniversityDetailsHandler;
-import com.piedpiper.univerrate.protocol.UniversityByCityRequest;
-import com.piedpiper.univerrate.protocol.UniversityByCityResponse;
-import com.piedpiper.univerrate.protocol.UniversityDetailsRequest;
-import com.piedpiper.univerrate.protocol.UniversityDetailsResponse;
+import com.piedpiper.univerrate.protocol.*;
 import com.piedpiper.univerrate.protocol.dto.CommentDto;
 import com.piedpiper.univerrate.protocol.dto.UniversityDto;
 import org.junit.Test;
@@ -31,6 +29,8 @@ public class UniversityControllerTest extends DefaultControllerTest {
     private UniversityByCityHandler universityByCityHandler;
     @MockBean
     private UniversityDetailsHandler universityDetailsHandler;
+    @MockBean
+    private Top10UniversityHandler top10UniversityHandler;
 
     UniversityDto university = new UniversityDto("fwo25hw2gbs", "Vinnutsia National Technical University", "VNTU", "smth", "Goverment", "The best", "Vinnytsia", "st som 23", 5.0);
 
@@ -107,6 +107,35 @@ public class UniversityControllerTest extends DefaultControllerTest {
                                 fieldWithPath("comments[].university_id").description("University id"),
                                 fieldWithPath("comments[].rate").description("Rate for university"),
                                 fieldWithPath("comments[].date").description("Comment's date"),
+                                fieldWithPath("code").description("Http code of response"),
+                                fieldWithPath("message").description("Http message of response")
+                        )));
+    }
+
+    @Test
+    public void testUniversityTop() throws Exception {
+        Top10UniversitiesResponse response = new Top10UniversitiesResponse(universities);
+
+        when(top10UniversityHandler.handle(any())).thenReturn(response);
+
+        String responseJson = mapper.writeValueAsString(response);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/university/top")
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(responseJson))
+                .andDo(document("top",
+                        preprocessRequest(prettyPrint()), preprocessResponse(prettyPrint()),
+                        responseFields(
+                                fieldWithPath("universities").description("List of universities"),
+                                fieldWithPath("universities[].id").description("Id for requests"),
+                                fieldWithPath("universities[].name").description("Full name of university"),
+                                fieldWithPath("universities[].short_name").description("Short abbreviate of university"),
+                                fieldWithPath("universities[].ownership").description("Ownership of university"),
+                                fieldWithPath("universities[].governing_body").description("Governing body of university"),
+                                fieldWithPath("universities[].type").description("University type(can be college, university, institute)"),
+                                fieldWithPath("universities[].region").description("Short region of university"),
+                                fieldWithPath("universities[].address").description("Full region of university"),
+                                fieldWithPath("universities[].rate").description("Rate for university"),
                                 fieldWithPath("code").description("Http code of response"),
                                 fieldWithPath("message").description("Http message of response")
                         )));

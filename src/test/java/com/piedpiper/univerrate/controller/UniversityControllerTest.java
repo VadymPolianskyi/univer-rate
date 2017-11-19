@@ -41,8 +41,8 @@ public class UniversityControllerTest extends DefaultControllerTest {
     );
 
     private List<CommentDto> comments = Arrays.asList(
-            new CommentDto("3fsu204", "author@gmail.com", "Vania", "The best university", "fwo25hw2gbs", 4, 3658252),
-            new CommentDto("sw989gh", "andriy@gmail.com", "Andriy", "Very bad university", "fwo25hw2gbs", 1, 2636363)
+            new CommentDto("3fsu204", "author@gmail.com", "Vania", "The best university", "fwo25hw2gbs", 4, 3658252, 4,75),
+            new CommentDto("sw989gh", "andriy@gmail.com", "Andriy", "Very bad university", "fwo25hw2gbs", 1, 2636363, 22, 53)
     );
 
 

@@ -51,7 +51,7 @@ You can view the Univer Rate in action by click the button:
 
 **_Stack of technologies:_**
 - **Spring boot** - building production-ready Spring application;
-- **GitHub API** - getting informations from GitHub;
+- **Open Data Ukraine** - getting informations about universities;
 - **MariaDB** - project's DB;
 - **Lombok** - annotation processing;
 - **Asciidoctor** - creating docs from tests;

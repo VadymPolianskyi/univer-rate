@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<CommentEntity, String> {
 
-    List<CommentEntity> findAllByUniversityId(String universityId);
+    List<CommentEntity> findAllByUniversityIdAfterOrderByDate(String universityId);
     Page<CommentEntity> findAllAndOrderByDate(Pageable pageable);
 
     default List<CommentEntity> findFirst10() {

@@ -42,6 +42,7 @@ public class UploadCommentHandler implements Handler <UploadCommentRequest, Uplo
         CommentEntity byEmail = commentService.getByEmailAndUniversityId(comment.getAuthorEmail(), comment.getUniversityId());
         if (byEmail != null) {
             byEmail.setContent(comment.getContent());
+            byEmail.setRate(comment.getRate());
             byEmail.setDate(System.currentTimeMillis());
             commentService.save(byEmail);
         } else {

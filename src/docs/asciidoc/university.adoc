@@ -4,6 +4,7 @@
 
 <<universities>> +
 <<details>> +
+<<top>> +
 
 [#universities]
 == Universities in city
@@ -32,7 +33,21 @@ include::{snippets}/details/http-response.adoc[]
 === Response  fields
 include::{snippets}/details/response-fields.adoc[]
 
+[#top]
+== Top 10 universities
 
+=== Request example
+include::{snippets}/top/http-request.adoc[]
+=== Request fields
+include::{snippets}/top/request-fields.adoc[]
+
+=== Response example
+include::{snippets}/top/http-response.adoc[]
+=== Response  fields
+include::{snippets}/top/response-fields.adoc[]
+
+
+<<top>> +
 <<universities>> +
 <<details>> +
 

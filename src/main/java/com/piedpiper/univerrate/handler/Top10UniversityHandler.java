@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 
 @Component
 @Slf4j
-public class Top10UniversityHandle implements Handler<Top10UniversitiesRequest, Top10UniversitiesResponse> {
+public class Top10UniversityHandler implements Handler<Top10UniversitiesRequest, Top10UniversitiesResponse> {
 
     private final UniversityService universityService;
     private final Mapper mapper;
 
     @Autowired
-    public Top10UniversityHandle(UniversityService universityService, Mapper mapper) {
+    public Top10UniversityHandler(UniversityService universityService, Mapper mapper) {
         this.universityService = universityService;
         this.mapper = mapper;
     }

@@ -1,6 +1,6 @@
 package com.piedpiper.univerrate.controller;
 
-import com.piedpiper.univerrate.handler.Top10UniversityHandle;
+import com.piedpiper.univerrate.handler.Top10UniversityHandler;
 import com.piedpiper.univerrate.handler.UniversityByCityHandler;
 import com.piedpiper.univerrate.handler.UniversityDetailsHandler;
 import com.piedpiper.univerrate.protocol.*;
@@ -20,13 +20,13 @@ public class UniversityController {
 
     private final UniversityByCityHandler universityByCityHandler;
     private final UniversityDetailsHandler universityDetailsHandler;
-    private final Top10UniversityHandle top10UniversityHandle;
+    private final Top10UniversityHandler top10UniversityHandler;
 
     @Autowired
-    public UniversityController(UniversityByCityHandler universityByCityHandler, UniversityDetailsHandler universityDetailsHandler, Top10UniversityHandle top10UniversityHandle) {
+    public UniversityController(UniversityByCityHandler universityByCityHandler, UniversityDetailsHandler universityDetailsHandler, Top10UniversityHandler top10UniversityHandler) {
         this.universityByCityHandler = universityByCityHandler;
         this.universityDetailsHandler = universityDetailsHandler;
-        this.top10UniversityHandle = top10UniversityHandle;
+        this.top10UniversityHandler = top10UniversityHandler;
     }
 
     @GetMapping("/in/{city}")
@@ -42,6 +42,6 @@ public class UniversityController {
 
     @GetMapping("/top")
     public Top10UniversitiesResponse universityDetails() {
-        return top10UniversityHandle.handle(new Top10UniversitiesRequest());
+        return top10UniversityHandler.handle(new Top10UniversitiesRequest());
     }
 }

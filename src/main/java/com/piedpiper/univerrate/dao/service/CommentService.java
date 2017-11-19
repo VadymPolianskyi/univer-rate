@@ -35,7 +35,7 @@ public class CommentService {
         return repository.findOne(id);
     }
 
-    public CommentEntity getByEmail(String email) {
-        return repository.findByAuthorEmail(email);
+    public CommentEntity getByEmailAndUniversityId(String email,String universityId) {
+        return repository.findByAuthorEmailAndUniversityId(email,universityId);
     }
 }

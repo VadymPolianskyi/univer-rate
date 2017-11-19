@@ -1,11 +1,9 @@
 package com.piedpiper.univerrate.controller;
 
+import com.piedpiper.univerrate.handler.Top10UniversityHandle;
 import com.piedpiper.univerrate.handler.UniversityByCityHandler;
 import com.piedpiper.univerrate.handler.UniversityDetailsHandler;
-import com.piedpiper.univerrate.protocol.UniversityByCityRequest;
-import com.piedpiper.univerrate.protocol.UniversityByCityResponse;
-import com.piedpiper.univerrate.protocol.UniversityDetailsRequest;
-import com.piedpiper.univerrate.protocol.UniversityDetailsResponse;
+import com.piedpiper.univerrate.protocol.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -22,11 +20,13 @@ public class UniversityController {
 
     private final UniversityByCityHandler universityByCityHandler;
     private final UniversityDetailsHandler universityDetailsHandler;
+    private final Top10UniversityHandle top10UniversityHandle;
 
     @Autowired
-    public UniversityController(UniversityByCityHandler universityByCityHandler, UniversityDetailsHandler universityDetailsHandler) {
+    public UniversityController(UniversityByCityHandler universityByCityHandler, UniversityDetailsHandler universityDetailsHandler, Top10UniversityHandle top10UniversityHandle) {
         this.universityByCityHandler = universityByCityHandler;
         this.universityDetailsHandler = universityDetailsHandler;
+        this.top10UniversityHandle = top10UniversityHandle;
     }
 
     @GetMapping("/in/{city}")
@@ -38,5 +38,10 @@ public class UniversityController {
     @GetMapping("/details/{id}")
     public UniversityDetailsResponse universityDetails(@PathVariable String id) {
         return universityDetailsHandler.handle(new UniversityDetailsRequest(id));
+    }
+
+    @GetMapping("/top")
+    public Top10UniversitiesResponse universityDetails() {
+        return top10UniversityHandle.handle(new Top10UniversitiesRequest());
     }
 }
